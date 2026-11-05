@@ -1,122 +1,62 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Outlet, Route, Routes } from 'react-router-dom'
+import { GuestOnly, RequireAuth } from './features/auth/guards'
+import { LoginPage } from './features/auth/pages/LoginPage'
+import { RegisterPage } from './features/auth/pages/RegisterPage'
+import { LandingPage } from './features/landing/pages/LandingPage'
+import { OnboardingPage } from './features/onboarding/pages/OnboardingPage'
+import { DashboardPage } from './features/donations/pages/DashboardPage'
+import { CatalogPage } from './features/donations/pages/CatalogPage'
+import { DonationDetailPage } from './features/donations/pages/DonationDetailPage'
+import { NewDonationPage } from './features/donations/pages/NewDonationPage'
+import { DeliveriesPage } from './features/deliveries/pages/DeliveriesPage'
+import { DeliveryDetailPage } from './features/deliveries/pages/DeliveryDetailPage'
+import { CourierPage } from './features/deliveries/pages/CourierPage'
+import { SettingsPage } from './features/settings/pages/SettingsPage'
+import { AdminPage } from './features/admin/pages/AdminPage'
+import { DesignSystemPage } from './features/design/pages/DesignSystemPage'
+import { NotFoundPage } from './features/not-found/pages/NotFoundPage'
+import { WorkspaceProvider } from './features/workspace/WorkspaceProvider'
+import { AppShell } from './shared/layout/AppShell'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function WorkspaceGate() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <WorkspaceProvider>
+      <Outlet />
+    </WorkspaceProvider>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+
+      <Route element={<GuestOnly />}>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/registro" element={<RegisterPage />} />
+      </Route>
+
+      <Route element={<RequireAuth />}>
+        <Route element={<WorkspaceGate />}>
+          <Route path="/onboarding" element={<OnboardingPage />} />
+
+          <Route element={<AppShell />}>
+            <Route path="/panel" element={<DashboardPage />} />
+            <Route path="/donaciones" element={<CatalogPage />} />
+            <Route path="/donaciones/nueva" element={<NewDonationPage />} />
+            <Route path="/donaciones/:id" element={<DonationDetailPage />} />
+            <Route path="/entregas" element={<DeliveriesPage />} />
+            <Route path="/entregas/:id" element={<DeliveryDetailPage />} />
+            <Route path="/courier" element={<CourierPage />} />
+            <Route path="/courier/entregas/:id" element={<DeliveryDetailPage />} />
+            <Route path="/configuracion" element={<SettingsPage />} />
+            <Route path="/admin/verificaciones" element={<AdminPage />} />
+            <Route path="/diseno" element={<DesignSystemPage />} />
+          </Route>
+        </Route>
+      </Route>
+
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
+  )
+}
