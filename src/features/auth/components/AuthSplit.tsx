@@ -20,10 +20,7 @@ export function AuthSplit({
           <Logo />
         </Link>
         <div className="w-full max-w-[380px] self-start">{children}</div>
-        <p className="mt-10 max-w-[380px] border-t border-line pt-4 text-[11px] leading-relaxed text-muted">
-          Mockup implementado sobre la API real. La sesión se guarda en el navegador y se renueva
-          contra <b>POST /api/auth/refresh</b>.
-        </p>
+        
       </div>
 
       <div className="relative hidden overflow-hidden bg-[linear-gradient(150deg,#244B39,#79876A)] lg:flex lg:items-end lg:p-11">
