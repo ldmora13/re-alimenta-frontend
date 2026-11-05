@@ -282,7 +282,7 @@ export function OnboardingPage() {
                       maxLength={40}
                       value={city}
                       onChange={(event) => setCity(event.target.value)}
-                      placeholder="Lima"
+                      placeholder="Medellín"
                     />
                     <span className="text-[11.5px] text-muted">
                       Se agrega a la etiqueta de tu primera dirección.

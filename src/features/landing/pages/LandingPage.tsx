@@ -101,7 +101,7 @@ export function LandingPage() {
         <div>
           <span className="eyebrow">
             <span className="eyebrow-dot" />
-            Rescate de alimentos · Lima
+            Rescate de alimentos · Medellín
           </span>
           <h1 className="mt-5 font-serif text-[46px] leading-[1.02] font-medium tracking-[-0.03em] sm:text-[62px] lg:text-[76px]">
             Que la comida
@@ -142,7 +142,7 @@ export function LandingPage() {
               ))}
             </div>
             <span>
-              <b className="text-ink">12 organizaciones</b> ya están rescatando comida en Lima
+              <b className="text-ink">12 organizaciones</b> ya están rescatando comida en Medellín
             </span>
           </div>
         </div>
@@ -307,7 +307,7 @@ export function LandingPage() {
       </section>
 
       <footer className="flex flex-col justify-between gap-2 border-t border-line px-5 py-6 text-[11.5px] text-muted sm:flex-row sm:px-10 lg:px-14">
-        <span>© 2026 Re-Alimenta · Lima, Perú</span>
+        <span>© 2026 Re-Alimenta · Medellín, Colombia</span>
         <span>Privacidad · Términos · Contacto</span>
       </footer>
     </div>

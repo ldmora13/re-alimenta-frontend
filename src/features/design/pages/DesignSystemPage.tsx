@@ -91,7 +91,7 @@ export function DesignSystemPage() {
             <div>
               <div className="text-[10px] tracking-[0.1em] text-muted uppercase">Inter · Etiqueta</div>
               <p className="mt-1 text-[10.5px] font-semibold tracking-[0.12em] text-green uppercase">
-                Rescate de alimentos · Lima
+                Rescate de alimentos · Medellín
               </p>
             </div>
             <div className="rounded-xl bg-surface-2 px-3 py-2 font-mono text-[11px] text-muted">
@@ -197,7 +197,7 @@ export function DesignSystemPage() {
       </div>
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard icon={Leaf} label="Comidas" value="1,248" hint="rescatadas en Lima" />
+        <StatCard icon={Leaf} label="Comidas" value="1,248" hint="rescatadas en Medellín" />
         <StatCard icon={Package} label="Donaciones" value={32} hint="publicadas este mes" />
         <StatCard icon={Truck} label="Entregas" value={18} hint="completadas" />
         <StatCard icon={Building2} label="Organizaciones" value={12} hint="activas" />
